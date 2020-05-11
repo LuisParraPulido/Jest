@@ -27,3 +27,29 @@ test('testing a callback', () => {
     expect(str).toBe('olleH');
   });
 });
+
+const reverseString2 = str => {
+  return new Promise((resolve, reject) => {
+    if (!str) {
+      reject(Error('Error'))
+    }
+    resolve(str.split('').reverse().join(''))
+  });
+};
+
+test('Testing a promise', () => {
+  return reverseString2('Hello')
+    .then(string => {
+      expect(string).toBe('olleH')
+    })
+})
+
+test('Testing async/await', async () => {
+  const string = await reverseString2('Hello');
+  expect(string).toBe('olleH')
+})
+
+afterEach( () =>console.log('After each test') );
+afterAll( () =>console.log('After all tests') );
+beforeEach( () =>console.log('Before each test') );
+beforeAll( () =>console.log('Before all tests') );
